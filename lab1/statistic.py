@@ -13,4 +13,4 @@ class StatisticsCalculator:
             mean = np.mean(column_data)
             return max_value, min_value, median, mean
         except (IndexError, ValueError):
-            raise MyException("Invalid column number or data format.")
+            raise MyException("Invalid column number or data format")
