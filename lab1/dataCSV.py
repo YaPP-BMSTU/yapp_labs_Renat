@@ -11,6 +11,11 @@ class DataAnalyzer:
                 lines = file.readlines()
                 headers = lines[0].strip().split(',')
                 data = [line.strip().split(',') for line in lines[1:]]
+                for row in data:
+                    if len(row) != 7:
+                        raise MyException("Error. line word break")
+                    if all(cell.strip() == '' for cell in row):
+                        raise MyException("Error. Empty line found")
                 return headers, data
         except FileNotFoundError:
             raise MyException("File not found.")
@@ -22,4 +27,4 @@ class DataAnalyzer:
         return filtered_data
 
     def display_table(self, data):
-        print(tabulate(data, headers=self.headers, tablefmt="pipe", stralign="center"))
+        print(tabulate(data, stralign="center"))
